@@ -1,0 +1,206 @@
+Небольшая заметочка для проверяющих!
+Данный проект выполнялся на платформе edu.21-school.ru
+
+Для вас специально собрал историю коммитов проекта со старой платформы:
+
+fast1987@DESKTOP-SLQBD8Q:~/BrickGame/C7_BrickGame_v1.0-1/src$ git log
+commit b4842ba8d4709183cc4e0cc111f4e67af9710add (HEAD -> develop, origin/develop)
+Author: norreyll <norreyll@student.21-school.ru>
+Date:   Tue Jul 22 19:53:23 2025 +0700
+
+    fix: Small fixes
+
+commit 26213b99a10a2520c21246ceff1b27afe7f3984a
+Author: norreyll <norreyll@student.21-school.ru>
+Date:   Tue Jul 22 19:40:41 2025 +0700
+
+    fix: fixed bugs and wrote comments
+
+commit f90c64b85b3e81aaea81b1c80db4bf2a3c57d194
+Author: norreyll <norreyll@student.21-school.ru>
+Date:   Tue Jul 22 15:54:18 2025 +0700
+
+    src: To close to finish project
+
+commit 15ee7ce0dcd398ddc0039a2231d550c6eb632ce8
+Author: norreyll <norreyll@student.21-school.ru>
+Date:   Tue Jul 22 01:01:34 2025 +0700
+
+    Started doing tetris
+
+:
+
+Это - подтверждение о том, что я реализовывал проект самостоятельно.
+
+Текущая структура src директории выглядит так:
+fast1987@DESKTOP-SLQBD8Q:~/BrickGamm/C7_BrickGame_v1.0-1/src$ tree
+.
+├── Makefile
+├── brick_game
+│   ├── gui
+│   │   └── cli
+│   │       ├── s21_interface.c
+│   │       └── s21_interface.h
+│   └── tetris
+│       ├── s21_finite_state_machine.c
+│       ├── s21_finite_state_machine.h
+│       ├── s21_logic.c
+│       └── s21_logic.h
+├── diagram
+│   ├── fsm_diagram.txt
+│   ├── fsm_diagram_graphviz.png
+│   ├── fsm_diagram_graphviz.txt
+│   └── node.txt
+├── high_score.txt
+├── ncurses.supp
+└── tests
+    └── s21_test_logic.c
+
+7 directories, 14 files
+
+Все норм, согласно структуре условия.
+
+Отдельно - вывод git show
+
+fast1987@DESKTOP-SLQBD8Q:~/BrickGame/C7_BrickGame_v1.0-1/src$ git show
+commit b4842ba8d4709183cc4e0cc111f4e67af9710add (HEAD -> develop, origin/develop)
+Author: norreyll <norreyll@student.21-school.ru>
+Date:   Tue Jul 22 19:53:23 2025 +0700
+
+    fix: Small fixes
+
+diff --git a/src/Makefile b/src/Makefile
+index 0db4f55..8d6b5ea 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -75,7 +75,7 @@ dvi:
+        @echo "But one thing will left - the finite state machine will do all to let you stay here"
+        @echo "In a classic pixel BrickGame!"
+        @echo "Good luck, guy. One day you are gonna to reach the top and become a king of Tetris)"
+-       @echo "P.S: Vladimir (F.A.S.T aka norreyll), an s21_BrickGame project writer"
++       @echo "P.S: Vladimir (F.A.S.T aka norreyll), a s21_BrickGame project writer!"
+ 
+ dist: clean
+        tar -czf brick_game.tar.gz *
+diff --git a/src/brick_game/gui/cli/s21_interface.c b/src/brick_game/gui/cli/s21_interface.c
+index 795dee8..26c38fc 100644
+--- a/src/brick_game/gui/cli/s21_interface.c
++++ b/src/brick_game/gui/cli/s21_interface.c
+@@ -200,6 +200,7 @@ void cli_run(void) {
+   }
+ }
+ 
++// Main function to render a game field (frontend)
+ int main(void) {
+   cli_init();
+   cli_run();
+diff --git a/src/brick_game/gui/cli/s21_interface.h b/src/brick_game/gui/cli/s21_interface.h
+index d2fb46b..2154776 100644
+--- a/src/brick_game/gui/cli/s21_interface.h
++++ b/src/brick_game/gui/cli/s21_interface.h
+@@ -1,3 +1,8 @@
++/*
++  This is a frontend (CLI) module of BrickGame (Tetris) Game
++  @author: norreyll (aka F.A.S.T), a student of 21 School from Novosibirsk
++*/
++
+ #ifndef S21_INTERFACE_H_
+ #define S21_INTERFACE_H_
+ 
+diff --git a/src/brick_game/tetris/s21_finite_state_machine.h b/src/brick_game/tetris/s21_finite_state_machine.h
+index d162949..c08d1fe 100644
+--- a/src/brick_game/tetris/s21_finite_state_machine.h
++++ b/src/brick_game/tetris/s21_finite_state_machine.h
+@@ -1,3 +1,8 @@
++/*
++  This is a backend (Finite State Machine) module of BrickGame (Tetris) Game
++  @author: norreyll (aka F.A.S.T), a student of 21 School from Novosibirsk
++*/
++
+ #ifndef S21_FINITE_STATE_MACHINE_H_
+ #define S21_FINITE_STATE_MACHINE_H_
+ #include "s21_logic.h"
+@@ -22,4 +27,4 @@ void FsmTransition(UserAction_t action);
+ 
+ extern GameState current_state;
+ 
+-#endif  // S21_FINITE_STATE_MACHINE_H
+\ No newline at end of file
++#endif  // S21_FINITE_STATE_MACHINE_H_
+\ No newline at end of file
+diff --git a/src/brick_game/tetris/s21_logic.c b/src/brick_game/tetris/s21_logic.c
+index aac6906..f8a1219 100644
+--- a/src/brick_game/tetris/s21_logic.c
++++ b/src/brick_game/tetris/s21_logic.c
+@@ -1,5 +1,5 @@
+-#include "s21_logic.h"
+ #define _POSIX_C_SOURCE 200809L
++#include "s21_logic.h"
+ 
+ static const char* HIGH_SCORE_FILE = "high_score.txt";
+ static bool timer_initialized = false;
+@@ -179,7 +179,7 @@ int clear_full_lines(void) {
+       for (int x = 0; x < FIELD_WIDTH; ++x) {
+         game_state.field[0][x] = 0;
+       }
+-      y++;
++      ++y;
+     }
+   }
+   return lines_cleared;
+diff --git a/src/brick_game/tetris/s21_logic.h b/src/brick_game/tetris/s21_logic.h
+index b40d78d..8b0cdd2 100644
+--- a/src/brick_game/tetris/s21_logic.h
++++ b/src/brick_game/tetris/s21_logic.h
+@@ -1,3 +1,8 @@
++/*
++  This is a backend (Logic) module of BrickGame (Tetris) Game
++  @author: norreyll (aka F.A.S.T), a student of 21 School from Novosibirsk
++*/
++
+ #ifndef S21_LOGIC_H_
+ #define S21_LOGIC_H_
+ 
+@@ -26,7 +31,6 @@ typedef struct {
+   int level;
+   int speed;
+   int pause;
+ } GameInfo_t;
+ 
+ typedef struct {
+diff --git a/src/diagram/fsm_diagram.txt b/src/diagram/fsm_diagram.txt
+index f4e3697..2359191 100644
+--- a/src/diagram/fsm_diagram.txt
++++ b/src/diagram/fsm_diagram.txt
+@@ -1,4 +1,4 @@
+-Refined State Diagram
++[EN]: Refined State Diagram
+ States
+ kStateStart: Waiting for game start.
+ kStateSpawn: Temporary state for new tetromino generation.
+@@ -14,4 +14,22 @@ kStateMoving → kStateGameOver: Terminate action or is_terminated (e.g., collis
+ kStatePaused → kStateMoving: Pause action.
+ kStatePaused → kStateGameOver: Terminate action.
+ kStateGameOver → kStateStart: Start action.
+-kStateGameOver → kStateGameOver: Terminate action (no state change).
+\ No newline at end of file
++kStateGameOver → kStateGameOver: Terminate action (no state change).
++
++[RU]: Уточненная диаграмма состояния
++Состояния
++kStateStart: Ожидание начала игры.
++kStateSpawn: Временное состояние для нового поколения тетромино.
++kStateMoving: Активный игровой процесс с перемещением тетромино.
++kStatePaused: Игра приостановлена.
++kStateGameOver: Игра завершена, ожидается перезапуск или выход из нее.
++Переходы
++kStateStart → kStateMoving: Начать действие.
++kStateStart → kStateGameOver: Завершить действие.
++kStateSpawn → kStateMoving: Автоматически (новый тетромино).
++kStateMoving → kStatePaused: Приостановить действие.
++kStateMoving → kStateGameOver: Завершить действие или is_terminated (например, столкновение в верхней части).
++kStatePaused → kStateMoving: Приостановить действие.
++kStatePaused → kStateGameOver: Завершить действие.
++kStateGameOver → kStateStart: Начать действие.
++kStateGameOver → kStateGameOver: Завершить действие (состояние не меняется).
+\ No newline at end of file
